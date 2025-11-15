@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+wall_dir="$HOME/Pictures/wallpapers"
+interval=300  # 30 minutes in seconds (change this to whatever you want)
+
+while true; do
+    # Get a random wallpaper
+    wallpaper=$(find "$wall_dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | shuf -n 1)
+    
+    if [ -n "$wallpaper" ]; then
+        swww img "$wallpaper" -t grow --transition-duration 1 --transition-fps 75
+        sleep 0.2
+        colorwaybar "$wallpaper"
+    fi
+    
+    sleep "$interval"
+done
+
