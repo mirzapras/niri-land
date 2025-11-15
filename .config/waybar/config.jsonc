@@ -4,18 +4,29 @@
     "start_hidden": true,
     "reload_style_on_change": true,
     "margin-top": 233,
-    "modules-center": ["clock", "custom/separator", "battery"],
+    "modules-center": ["clock", "custom/separator", "tray", "custom/separator", "custom/cpu", "custom/gpu"],
+    // "modules-center": ["clock", "custom/separator", "tray"],
     "clock": {
-      "format": " {:%H:%M}"
+        "format": " {:%H:%M}"
     },
-    "battery": {
-      "format": "{icon} {capacity}%",
-      "format-charging": " {capacity}%",
-      "format-icons": ["", "", "", "", ""]
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8,
+        "reverse-direction": false
+    },
+    "custom/cpu": {
+        "exec": "~/.local/bin/cpu-power",
+        "interval": 2,
+        "format": "󰘚 {}",
+        "tooltip": false
+    },
+    "custom/gpu": {
+        "exec": "~/.local/bin/gpu-power",
+        "interval": 2,
+        "format": "󰢮 {}",
+        "tooltip": false
     },
     "custom/separator": {
-      "format": "󰇙"
+        "format": "󰇙"
     }
 }
-
-

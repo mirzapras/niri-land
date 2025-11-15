@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+~/.local/bin/power-monitor.sh | grep "^c" | sed 's/c//' | awk '{print $1"W"}'
+
