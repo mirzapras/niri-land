@@ -111,7 +111,7 @@ input {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 0
+    gaps 5
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -195,20 +195,21 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-	off
+	on
 
-        width 1
-        active-color "#ffc87f"
-        inactive-color "#505050"
+        width 3
+        active-color "#f0f0f0"
+        inactive-color "#282828"
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
 
         // Gradients can use a few different interpolation color spaces.
         // For example, this is a pastel rainbow gradient via in="oklch longer hue".
-        //
-        // active-gradient from="#e5989b" to="#ffb4a2" angle=45 relative-to="workspace-view" in="oklch longer hue"
 
+        // active-gradient from="#ffffff" to="#fabd2f" to="#fe8019" to="#fb4934" angle=90 relative-to="workspace-view"
+        // active-gradient from="#ffffff" to="#444444" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        // active-gradient from="#e5989b" to="#ffb4a2" angle=45 relative-to="workspace-view" in="oklch longer hue"
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
@@ -231,7 +232,7 @@ layout {
         // window. These will also remove client-side shadows if the window
         // draws any.
         //
-        // draw-behind-window true
+        draw-behind-window true
 
         // You can change how shadows look. The values below are in logical
         // pixels and match the CSS box-shadow properties.
@@ -255,7 +256,7 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        // left 64
+        // left -10
         // right 64
         // top 64
         // bottom 64
@@ -271,9 +272,10 @@ layout {
 // These lines starts components used by niri-land.
 spawn-at-startup "mako"
 spawn-at-startup "swww-daemon"
+spawn-at-startup "waybar"
 spawn-at-startup "overviewlistener"
 spawn-at-startup "darkman" "run" // optional, you can comment this if you don't use darkman
-spawn-at-startup "sh" "-c" "sleep 2 && waybar"
+// spawn-at-startup "sh" "-c" "sleep 5 && waybar"
 spawn-at-startup "sh" "-c" "sleep 3 && wallpaper-rotate" 
 spawn-at-startup "sh" "-c" "sleep 4 && xembedsniproxy"
 
@@ -324,6 +326,13 @@ window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
+// Custom border color
+window-rule {
+    match app-id=r#"(Alacritty)"#
+    border {
+        active-color "#ebdbb2"
+    }
+}
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -354,8 +363,8 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
+window-rule {
+    geometry-corner-radius 22
     clip-to-geometry true
 }
 
@@ -375,7 +384,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Ctrl+Alt+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty" "-e" "tmux" "new-session"; }
+    Ctrl+Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty" "-e" "tmux" "new-session"; }
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     //  Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "appdrawer"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn-sh "if pgrep -x rofi; then pkill -x rofi; else appdrawer; fi"; }
@@ -417,13 +426,19 @@ binds {
     Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
     // Mod+Down  { focus-window-down; }
     // Mod+Up    { focus-window-up; }
-    Mod+Right { focus-column-right; }
+
     Mod+H     { focus-column-left; }
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
+
+    Mod+A { focus-column-left; }
+    Mod+S { focus-column-right; }
+    Mod+Ctrl+A  { move-column-left; }
+    Mod+Ctrl+S  { move-column-right; }
 
     Mod+Ctrl+Left  { move-column-left; }
     // Mod+Ctrl+Down  { move-window-down; }
@@ -616,8 +631,8 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    // Ctrl+Print { screenshot-screen; }
+    Mod+Print { screenshot; }
+    Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
     Mod+Shift+S { screenshot show-pointer=false; }
 
@@ -646,11 +661,12 @@ environment {
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
     MOZ_ENABLE_WAYLAND "1"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
     QT_QPA_PLATFORM "wayland"
     GDK_BACKEND "wayland"
     CLUTTER_BACKEND "wayland"
     SDL_VIDEODRIVER "wayland"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
 }
 
 layer-rule {
@@ -671,7 +687,7 @@ gestures {
 }
 
 cursor {
-    xcursor-theme "Bibata-Original-Classic"
+    xcursor-theme "Breeze_Light"
     hide-after-inactive-ms 3000
 }
 

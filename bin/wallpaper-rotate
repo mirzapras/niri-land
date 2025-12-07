@@ -8,7 +8,7 @@ while true; do
     wallpaper=$(find "$wall_dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | shuf -n 1)
     
     if [ -n "$wallpaper" ]; then
-        swww img "$wallpaper" -t grow --transition-duration 1 --transition-fps 75
+        swww img "$wallpaper" -t grow --transition-duration 1 --transition-fps 60
         sleep 0.2
         colorwaybar "$wallpaper"
     fi
