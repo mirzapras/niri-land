@@ -1,0 +1,124 @@
+[env]
+WRL_NO_HARDWARE_CURSORS = "1"
+
+[terminal.shell]
+program = "/bin/bash"
+args = ["-c", "tmux attach -t $(tmux ls -F '#{session_name}' | head -1) 2>/dev/null || tmux new-session"]
+
+[window.dimensions]
+# Number of columns
+columns = 225
+
+# Number of lines
+lines = 53
+
+# ===================================================================
+# Font Configuration
+# ===================================================================
+[font]
+# Font size
+size = 10.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+# ===================================================================
+# Behavior & Quality of Life
+# ===================================================================
+[scrolling]
+# Increases the number of lines Alacritty keeps in its history
+history = 10000
+
+[selection]
+# This makes highlighting text automatically copy it to the main clipboard
+save_to_clipboard = true
+
+[cursor]
+# Style can be "Block", "Beam", or "Underline"
+style = "Block"
+
+# ===================================================================
+# Mouse and Keyboard Bindings
+# ===================================================================
+[mouse]
+# [[mouse.bindings]]
+# mouse = "Right"
+# action = "None"
+
+# [[mouse.bindings]]
+# mouse = "Middle"
+# action = "None"
+
+# ===================================================================
+# Visuals (Padding, Opacity, Colors)
+# ===================================================================
+[window]
+# Adds some breathing room around the text
+padding = { x = 10, y = 10 }
+
+# Window transparency (0.0 is fully transparent, 1.0 is fully opaque)
+opacity = 0.95
+
+# ===================================================================
+# Gruvbox Dark Theme Colors
+# ===================================================================
+[colors.primary]
+background = "#282828"  # dark0
+foreground = "#ebdbb2"  # fg0
+
+[colors.normal]
+black   = "#282828"  # dark0
+red     = "#cc241d"  # neutral_red
+green   = "#98971a"  # neutral_green
+yellow  = "#d79921"  # neutral_yellow
+blue    = "#458588"  # neutral_blue
+magenta = "#b16286"  # neutral_purple
+cyan    = "#689d6a"  # neutral_aqua
+white   = "#a89984"  # fg4
+
+[colors.bright]
+black   = "#928374"  # gray
+red     = "#fb4934"  # bright_red
+green   = "#b8bb26"  # bright_green
+yellow  = "#fabd2f"  # bright_yellow
+blue    = "#83a598"  # bright_blue
+magenta = "#d3869b"  # bright_purple
+cyan    = "#8ec07c"  # bright_aqua
+white   = "#ebdbb2"  # fg0
+
+# ===================================================================
+# Colors (Orange & Black Theme)
+# ===================================================================
+# [colors.normal]
+# A slightly lighter black
+# black = "#2e3440"
+# A muted red for errors
+# red = "#d16d58"
+# A bright orange for highlights and package names
+# green = "#ff8c00"
+# A brighter orange for warnings
+# yellow = "#ffa500"
+# A muted blue for contrast
+# blue = "#808080"
+# Another bright orange for other highlights
+# magenta = "#ff6347"
+# A light gray for cyan tones
+# cyan = "#cccccc"
+# A bright white
+# white = "#ffffff"
+# ===================================================================
+# Primary Colors (Default background and foreground)
+# ===================================================================
+# [colors.primary]
+# background = "#2e3440"
+# background = "#0e1013"
+# foreground = "#d8dee9"
+
+[general]
+live_config_reload = true
+
