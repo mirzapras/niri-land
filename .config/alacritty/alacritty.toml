@@ -74,18 +74,18 @@ foreground = "#ebdbb2"  # fg0
 [colors.normal]
 black   = "#282828"  # dark0
 red     = "#cc241d"  # neutral_red
-green   = "#98971a"  # neutral_green
+green   = "#6f9965"  # neutral_green
 yellow  = "#d79921"  # neutral_yellow
-blue    = "#458588"  # neutral_blue
+blue    = "#cddfe6"  # neutral_blue
 magenta = "#b16286"  # neutral_purple
-cyan    = "#689d6a"  # neutral_aqua
+cyan    = "#8ec07c"  # neutral_aqua
 white   = "#a89984"  # fg4
 
 [colors.bright]
 black   = "#928374"  # gray
 red     = "#fb4934"  # bright_red
-green   = "#b8bb26"  # bright_green
-yellow  = "#fabd2f"  # bright_yellow
+green   = "#8ec07c"  # bright_green
+yellow  = "#d79921"  # bright_yellow
 blue    = "#83a598"  # bright_blue
 magenta = "#d3869b"  # bright_purple
 cyan    = "#8ec07c"  # bright_aqua
