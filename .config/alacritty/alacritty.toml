@@ -1,6 +1,9 @@
 [env]
 WRL_NO_HARDWARE_CURSORS = "1"
 
+[general]
+live_config_reload = true
+
 [terminal.shell]
 program = "/bin/bash"
 args = ["-c", "tmux attach -t $(tmux ls -F '#{session_name}' | head -1) 2>/dev/null || tmux new-session"]
@@ -90,35 +93,3 @@ blue    = "#83a598"  # bright_blue
 magenta = "#d3869b"  # bright_purple
 cyan    = "#8ec07c"  # bright_aqua
 white   = "#ebdbb2"  # fg0
-
-# ===================================================================
-# Colors (Orange & Black Theme)
-# ===================================================================
-# [colors.normal]
-# A slightly lighter black
-# black = "#2e3440"
-# A muted red for errors
-# red = "#d16d58"
-# A bright orange for highlights and package names
-# green = "#ff8c00"
-# A brighter orange for warnings
-# yellow = "#ffa500"
-# A muted blue for contrast
-# blue = "#808080"
-# Another bright orange for other highlights
-# magenta = "#ff6347"
-# A light gray for cyan tones
-# cyan = "#cccccc"
-# A bright white
-# white = "#ffffff"
-# ===================================================================
-# Primary Colors (Default background and foreground)
-# ===================================================================
-# [colors.primary]
-# background = "#2e3440"
-# background = "#0e1013"
-# foreground = "#d8dee9"
-
-[general]
-live_config_reload = true
-
