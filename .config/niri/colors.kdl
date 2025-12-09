@@ -1,0 +1,13 @@
+layout {
+    border {
+        active-color "#f0f0f0"
+        inactive-color "#282828"
+    }
+}
+
+window-rule {
+    match app-id=r#"Alacritty"#
+    border {
+        active-color "#ebdbb2"
+    }
+}
