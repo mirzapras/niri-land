@@ -1,20 +1,7 @@
 #!/usr/bin/env bash
-
-# Wait for waybar to be ready
 sleep 3
-
-# Track overview state
-overview_open=false
-
-# Listen for overview events
-niri msg --json event-stream | jq -c --unbuffered 'select(.OverviewOpenedOrClosed != null) | .OverviewOpenedOrClosed.open' | \
-while read -r is_open; do
-    # Only toggle if state actually changed
-    if [ "$is_open" = "true" ] && [ "$overview_open" = "false" ]; then
-        overview_open=true
-        killall -SIGUSR1 waybar
-    elif [ "$is_open" = "false" ] && [ "$overview_open" = "true" ]; then
-        overview_open=false
-        killall -SIGUSR1 waybar
-    fi
+niri msg --json event-stream | jq -c --unbuffered 'select(.OverviewOpenedOrClosed != null)' | \
+while read -r event; do
+    killall -SIGUSR1 waybar
 done
+
